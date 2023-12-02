@@ -1,4 +1,5 @@
 import pygame 
+import time
 
 class Settings():
 
@@ -19,6 +20,25 @@ class Settings():
         # Button Settings
         self.button_font = pygame.font.SysFont("sans-serif", 32)
 
+
+        # Target Settings
+        self.target_max_size = 20
+        self.growth_rate = 0.1
+        self.target_color1 = (255, 0, 0)
+        self.target_color2 = (255, 255, 255)
+
+        # Custom events
+        self.TARGET_INCRESING = 400
+        self.TARGET_EVENT = pygame.USEREVENT
+        self.TARGET_PADDING = 30
+        
+        # Game Stats
+        self.elapsed_time = 0
+        self.target_pressed = 0
+        self.clicks = 0
+        self.misses = 0
+        self.lives = 3
+        self.start_time = time.time()
 
 class Button():
 
@@ -43,13 +63,14 @@ class Button():
         mouse = pygame.mouse.get_pos()
         if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
             pygame.draw.rect(screen, self.hover_color, (self.x, self.y, self.width, self.height))
+            # text_surface = font.render(self.text, True, (0, 0, 0))
         else:
             pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
-
+            # text_surface = font.render(self.text, True, (255, 255, 255))
         text_surface = font.render(self.text, True, (0, 0, 0))
         screen.blit(text_surface, (self.x + (self.width - text_surface.get_width()) // 2, self.y + (self.height - text_surface.get_height()) // 2))
     
-    
+
 class Label():
 
     def __init__(self, x, y, text, font=None, font_size=32, color=(255, 0, 0), Flag=False):
