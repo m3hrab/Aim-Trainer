@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, time
 
 class Cursor():
     def __init__(self, image):
@@ -44,6 +44,20 @@ class Target():
         pygame.draw.circle(screen, settings.target_color2, (self.x, self.y), self.size * 0.4)
         pygame.draw.circle(screen, settings.target_color1, (self.x, self.y), self.size * 0.2)
 
+class HighScore():
+    def __init__(self, filename):
+        self.filename = filename
+        try:
+            with open(self.filename, 'r') as file:
+                self.score = float(file.read())
+        except FileNotFoundError:
+            self.score = 0.0
+
+    def update(self, new_score):
+        if new_score > self.score:
+            self.score = new_score
+            with open(self.filename, 'w') as file:
+                file.write(str(self.score))
 
 
 class Game():
@@ -54,7 +68,18 @@ class Game():
             self.cursor = Cursor("assets/images/cursor.png")
             self.heart_image = pygame.image.load("assets/images/heart.png")
             self.targets = []
-    
+            self.reset()
+
+        def reset(self):
+            self.targets = []
+            self.settings.elapsed_time = 1
+            self.settings.target_pressed = 0
+            self.settings.clicks = 1
+            self.settings.misses = 0
+            self.settings.lives = 3
+            self.settings.start_time = time.time()
+            pygame.mouse.set_visible(True)
+
         
         def draw(self):
             for target in self.targets:

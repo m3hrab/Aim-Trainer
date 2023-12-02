@@ -1,5 +1,6 @@
 import pygame 
 import time
+from game import HighScore
 
 class Settings():
 
@@ -7,7 +8,10 @@ class Settings():
         pygame.mixer.pre_init(44100, -16, 2, 512)
         # Sounds
         self.btn_click_sound = pygame.mixer.Sound("assets/sounds/btn.wav")
-
+        self.hit = pygame.mixer.Sound("assets/sounds/hit3.wav")
+        self.miss_hit = pygame.mixer.Sound("assets/sounds/miss_hit.wav")
+        self.lose_life = pygame.mixer.Sound("assets/sounds/lose_life2.wav")
+        self.high_score_sound = pygame.mixer.Sound("assets/sounds/high_score.wav")
         # Game Title
         self.game_title = "AIM TRAINING"
         self.title_font = pygame.font.Font("assets/fonts/paraxome-font/Paraxome-K7YGD.ttf", 104)
@@ -33,12 +37,15 @@ class Settings():
         self.TARGET_PADDING = 20
         
         # Game Stats
-        self.elapsed_time = 0
+        self.elapsed_time = 1
         self.target_pressed = 0
-        self.clicks = 0
+        self.clicks = 1
         self.misses = 0
         self.lives = 3
         self.start_time = time.time()
+
+        # High Score
+        self.high_score = HighScore("high_score.txt")
 
 class Button():
 
