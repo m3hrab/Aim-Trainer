@@ -42,7 +42,7 @@ class Target():
         pygame.draw.circle(screen, settings.target_color2, (self.x, self.y), self.size * 0.8)
         pygame.draw.circle(screen, settings.target_color1, (self.x, self.y), self.size * 0.6)
         pygame.draw.circle(screen, settings.target_color2, (self.x, self.y), self.size * 0.4)
-        # pygame.draw.circle(screen, settings.target_color1, (self.x, self.y), self.size * 0.2)
+        pygame.draw.circle(screen, settings.target_color1, (self.x, self.y), self.size * 0.2)
 
 
 
@@ -52,6 +52,7 @@ class Game():
             self.settings = settings
             self.screen = screen
             self.cursor = Cursor("assets/images/cursor.png")
+            self.heart_image = pygame.image.load("assets/images/heart.png")
             self.targets = []
     
         

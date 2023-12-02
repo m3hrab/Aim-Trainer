@@ -22,15 +22,15 @@ class Settings():
 
 
         # Target Settings
-        self.target_max_size = 20
-        self.growth_rate = 0.1
+        self.target_max_size = 30
+        self.growth_rate = 0.275
         self.target_color1 = (255, 0, 0)
         self.target_color2 = (255, 255, 255)
 
         # Custom events
         self.TARGET_INCRESING = 400
         self.TARGET_EVENT = pygame.USEREVENT
-        self.TARGET_PADDING = 30
+        self.TARGET_PADDING = 20
         
         # Game Stats
         self.elapsed_time = 0
